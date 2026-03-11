@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Pelikaansoep Aftelklok</title>
+<style>
+  body{
+    font-family: Arial, sans-serif;
+    background:#111;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+  }
+  #clock{
+    font-size:40px;
+  }
+</style>
+</head>
+<body>
+
+<div>
+  <h1>🍲 Pelikaansoep aftelklok</h1>
+  <div id="clock">laden...</div>
+</div>
+
+<script>
+const targetDate = new Date("2098-03-21T00:00:00");
+
+function updateClock(){
+  const now = new Date();
+  const diff = targetDate - now;
+
+  if(diff <= 0){
+    document.getElementById("clock").innerHTML = "De pelikaansoep is klaar! 🎉";
+    return;
+  }
+
+  const seconds = Math.floor(diff / 1000) % 60;
+  const minutes = Math.floor(diff / (1000*60)) % 60;
+  const hours = Math.floor(diff / (1000*60*60)) % 24;
+  const days = Math.floor(diff / (1000*60*60*24));
+
+  document.getElementById("clock").innerHTML =
+    days + " dagen " +
+    hours + " uur " +
+    minutes + " minuten " +
+    seconds + " seconden";
+}
+
+setInterval(updateClock,1000);
+updateClock();
+</script>
+
+</body>
+</html>
